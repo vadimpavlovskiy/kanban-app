@@ -39,7 +39,7 @@ const Login = () => {
                   <Input required className="rounded-xl text-white bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500" type="password" id="password" value={values.password} onChange={handleChange} />
                   <Button disabled={(values.email === '' || values.password === '') ? true : false} type="submit">Submit</Button>
                 </div>
-    </form>
+             </form>
             </div>
         </main>
     )

@@ -7,8 +7,10 @@ use Inertia\Inertia;
 
 class LoginController
 {
-    public function show() {
+    public function create() {
         return Inertia::render('Login');
-  
+    }
+    public function store() {
+        return Inertia::render('Signup');
     }
 }
