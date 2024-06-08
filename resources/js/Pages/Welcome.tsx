@@ -1,5 +1,5 @@
 import Header from '@/Layouts/Header';
-import { Link, Head } from '@inertiajs/react';
+import { Link, Head, usePage } from '@inertiajs/react';
 
 export default function Welcome() {
     return (

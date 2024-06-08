@@ -10,7 +10,4 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('Welcome');
-Route::get('/login', [LoginController::class, 'create']);
-Route::get('/signup', [RegistrationController::class, 'create']);
-Route::post('/signup', [RegistrationController::class, 'store']);
 require __DIR__.'/auth.php';

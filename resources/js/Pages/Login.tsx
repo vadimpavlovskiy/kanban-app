@@ -22,7 +22,7 @@ const Login = () => {
 
       function handleSubmit(e) {
         e.preventDefault()
-        router.post('/users', values)
+        router.post('/login', values)
       }
     
     

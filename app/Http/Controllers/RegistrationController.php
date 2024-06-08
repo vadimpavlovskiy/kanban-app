@@ -20,7 +20,8 @@ class RegistrationController
             'email' => 'required | max:255 | email',
             'password' => ['required', 'confirmed', Password::min(6)]
         ]);
-        User::create($validated);
+        $user = User::create($validated);
+        Auth::login($user);
 
         return to_route('Welcome');
     }
