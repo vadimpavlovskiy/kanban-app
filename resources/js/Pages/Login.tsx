@@ -2,30 +2,21 @@ import Button from "@/Components/Forms/Button";
 import Input from "@/Components/Forms/Input";
 import Label from "@/Components/Forms/Label";
 import Header from "@/Layouts/Header";
-import { router } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
 const Login = () => {
-    const [values, setValues] = useState({
-        email: "",
-        password: ""
-      })
-
-      function handleChange(e) {
-        const key = e.target.id;
-        const value = e.target.value
-        setValues(values => ({
-            ...values,
-            [key]: value,
-        }))
-      }
-
-      function handleSubmit(e) {
-        e.preventDefault()
-        router.post('/login', values)
-      }
+  const { data, setData, post, processing, errors } = useForm({
+    email: '',
+    password: '',
+  })
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    post('/login');
+  }      
     
-    
+  const hasEmptyFields = Object.values(data).some(value => value.trim() === '');
     return (
         <main className="w-full">
             <Header />
@@ -34,10 +25,11 @@ const Login = () => {
                 <h2 className="text-2xl text-center font-bold">Login</h2>
                 <div className="mt-4 flex flex-col gap-y-4">
                   <Label className={"text-xl font-medium"} htmlFor="email">Email</Label>
-                  <Input className="rounded-xl text-white bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500" type="email" id="email" value={values.email} onChange={handleChange} />
+                  <Input className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="email" id="email" value={data.email} onChange={e=> setData('email', e.target.value)} />
                   <Label className="text-xl font-medium" htmlFor="email">Password:</Label>
-                  <Input required className="rounded-xl text-white bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500" type="password" id="password" value={values.password} onChange={handleChange} />
-                  <Button disabled={(values.email === '' || values.password === '') ? true : false} type="submit">Submit</Button>
+                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="password" id="password" value={data.password} onChange={e=> setData('password', e.target.value)} />
+                  {errors.email && <div className="text-red-400 text-sm font-bold">{errors.email}</div>}
+                  <Button disabled={hasEmptyFields ? true : false} type="submit">Submit</Button>
                 </div>
              </form>
             </div>

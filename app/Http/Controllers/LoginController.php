@@ -19,10 +19,10 @@ class LoginController
 
         if(Auth::attempt($attributes)) {
             $request->session()->regenerate();
-            return to_route('Welcome');
+            return to_route('Dashboard');
         };
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'The provided credentials do not match our records. Please, try again!',
         ])->onlyInput('email');
     }
     public function destroy(Request $request) {
