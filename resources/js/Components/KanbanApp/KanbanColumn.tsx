@@ -3,6 +3,8 @@ import { Column, ColumnProps } from '../Types/ColumnType'
 import { DeleteButton } from '@/Buttons/DeleteButton';
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
+import { KanbanTask } from './KanbanTask';
+import { Task } from '../Types/TaskType';
 
 export const KanbanColumn = (props: ColumnProps) => {
     const {column, deleteColumn} = props;
@@ -20,7 +22,7 @@ export const KanbanColumn = (props: ColumnProps) => {
     }
 
     if(isDragging) {
-        return ( <div ref={setNodeRef} style={style} className='bg-gray-200 w-[350px] h-[500px] max-h-[500px] rounded-lg border-2 border-rose-300 opacity-40 flex flex-col'>
+        return ( <div ref={setNodeRef} style={style} className='bg-blue-100 w-[350px] h-[500px] max-h-[500px] rounded-lg border-2 border-blue-200 opacity-40 flex flex-col'>
             </div>)
     }
     return (
@@ -35,8 +37,12 @@ export const KanbanColumn = (props: ColumnProps) => {
                 </button>
                 </div>
             </div>
-            <div className='flex flex-grow p-3'>
-                Content
+            <div className='flex flex-col gap-y-2 p-3 overflow-scroll'>
+                {column.tasks.map((task:Task) => {
+                    return (
+                        <KanbanTask task={task} />
+                    )
+                })}
             </div>
         </div>
     )

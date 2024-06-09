@@ -1,16 +1,10 @@
+import { Task } from "./TaskType";
+import { User } from "./UserType";
+
 export type ColumnProps = {
     column: Column;
     deleteColumn: (id: string | number) => void;
 };
-
-export interface Task {
-    id: number;
-    column_id: number;
-    title: string;
-    body: string;
-    created_at: string;
-    updated_at: string;
-}
 
 export interface Column {
     id: string | number;
@@ -32,11 +26,24 @@ export interface Data {
 
 export type DashboardPageProps = {
     columnsData: Column[];
-    auth: any;
+    auth: {
+        user: {
+            email: string;
+            id: number;
+            first_name?: string;
+            second_name?: string;
+        };
+    };
 };
 
 export type PageProps = {
     errors: Record<string, string>;
-    // Add other common properties from usePage().props
-    // For example, if you have more properties in your props, define them here.
+    auth: {
+        user: {
+            email: string;
+            id: number;
+            first_name?: string;
+            second_name?: string;
+        };
+    };
 };

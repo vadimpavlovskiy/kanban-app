@@ -20,9 +20,9 @@ export default function KandanBoard() {
     )
     function createNewColumn () {
         const columnAddColumn: Column = {
-            id: Math.floor(Math.random()*12345),
-            title: `Column ${columns.length + 1}`,
-            user_id: 6,
+            id: `${columns.length + 1}`,
+            title: `A new Column`,
+            user_id: pageProps.auth.user.id,
             created_at: String(Date.now()),
             updated_at: String(Date.now()),
             tasks: []
