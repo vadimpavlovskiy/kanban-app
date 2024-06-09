@@ -1,13 +1,15 @@
 import { PlusButton } from '@/Buttons/PlusButton'
 import React, { useMemo, useState } from 'react'
-import { Column } from '../Types/ColumnType';
+import { Column, DashboardPageProps, PageProps } from '../Types/ColumnType';
 import { KanbanColumn } from './KanbanColumn';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { createPortal } from 'react-dom';
+import { usePage } from '@inertiajs/react';
 
 export default function KandanBoard() {
-    const [columns, setColumns] = useState<Column[]>([]);
+    const pageProps = usePage().props as PageProps & Partial<DashboardPageProps>;
+    const [columns, setColumns] = useState<Column[]>(pageProps.columnsData);
     const [activeColumn, setActiveColumn] = useState<Column | null>(null);
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -19,7 +21,11 @@ export default function KandanBoard() {
     function createNewColumn () {
         const columnAddColumn: Column = {
             id: Math.floor(Math.random()*12345),
-            title: `Column ${columns.length + 1}`
+            title: `Column ${columns.length + 1}`,
+            user_id: 6,
+            created_at: String(Date.now()),
+            updated_at: String(Date.now()),
+            tasks: []
         }
         setColumns([...columns, columnAddColumn])
     }

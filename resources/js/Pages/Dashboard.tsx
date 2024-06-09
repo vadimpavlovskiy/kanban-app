@@ -3,7 +3,7 @@ import { Droppable } from '@/Components/Droppable';
 import KandanBoard from '@/Components/KanbanApp/KandanBoard';
 import Header from '@/Layouts/Header';
 import { DndContext } from '@dnd-kit/core';
-import { Link, Head, usePage } from '@inertiajs/react';
+import { Link, Head } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Dashboard() {

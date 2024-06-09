@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,11 +10,15 @@ class Column extends Model
 {
     use HasFactory;
 
-    public function user():BelongsTo {
+    protected $guarded = [];
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function tasks():HasMany {
-        return $this -> hasMany(Task::class);
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
     }
 }

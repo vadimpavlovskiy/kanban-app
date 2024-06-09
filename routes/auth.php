@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,5 @@ Route::middleware('guest')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::post("/logout/", [LoginController::class, 'destroy'])->name('logout');
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('Dashboard');
+    Route::get('/dashboard', [ColumnController::class, 'index'])->name('Dashboard');
 });
