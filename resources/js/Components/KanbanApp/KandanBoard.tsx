@@ -1,11 +1,12 @@
 import { PlusButton } from '@/Buttons/PlusButton'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Column, DashboardPageProps, PageProps } from '../Types/ColumnType';
 import { KanbanColumn } from './KanbanColumn';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { createPortal } from 'react-dom';
 import { usePage } from '@inertiajs/react';
+import { KanbanCreateColumn } from './KanbanCreateColumn';
 
 export default function KandanBoard() {
     const pageProps = usePage().props as PageProps & Partial<DashboardPageProps>;
@@ -18,6 +19,11 @@ export default function KandanBoard() {
             }
         })
     )
+
+    useEffect(() => {
+        setColumns(pageProps.columnsData);
+    }, [pageProps.columnsData]);
+
     function createNewColumn () {
         const columnAddColumn: Column = {
             id: `${columns.length + 1}`,
@@ -71,10 +77,7 @@ export default function KandanBoard() {
                         ))}
                     </SortableContext>
                 </div>
-                <button onClick={()=>createNewColumn()} className='h-[60px] w-[350px] min-w-[350px] cursor-pointer rounded-lg bg-blue-500 bottom-2 border-black p-4 text-white ring-rose-300 flex gap-2 duration-700 hover:ring-1 hover:bg-blue-600'>
-                    <PlusButton />
-                    Add Column
-                </button>
+                <KanbanCreateColumn />
             </div>
             {createPortal(    
             <DragOverlay>

@@ -31,7 +31,6 @@ const Login = () => {
                 <div className="mt-4 flex flex-col gap-y-4">
                   <Label className={"text-xl font-medium"} htmlFor="first_name">First Name</Label>
                   <Input 
-                  className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" 
                   required 
                   type="text" 
                   id="first_name" 
@@ -39,13 +38,13 @@ const Login = () => {
                   onChange={e=> setData('first_name', e.target.value)} 
                   />
                   <Label className={"text-xl font-medium"} htmlFor="second_name">Second Name</Label>
-                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="text" id="second_name" value={data.second_name} onChange={e=> setData('second_name', e.target.value)}  />
+                  <Input required type="text" id="second_name" value={data.second_name} onChange={e=> setData('second_name', e.target.value)}  />
                   <Label className={"text-xl font-medium"} htmlFor="email">Email</Label>
-                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="email" id="email" value={data.email} onChange={e=> setData('email', e.target.value)} />
+                  <Input required type="email" id="email" value={data.email} onChange={e=> setData('email', e.target.value)} />
                   <Label className="text-xl font-medium" htmlFor="password">Password:</Label>
-                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="password" id="password" value={data.password} onChange={e=> setData('password', e.target.value)} />
+                  <Input required type="password" id="password" value={data.password} onChange={e=> setData('password', e.target.value)} />
                   <Label className="text-xl font-medium" htmlFor="confirmed_password">Password Confirmation:</Label>
-                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="password" id="password" value={data.password_confirmation} onChange={e=> setData('password_confirmation', e.target.value)} />
+                  <Input required type="password" id="password" value={data.password_confirmation} onChange={e=> setData('password_confirmation', e.target.value)} />
                   <Button disabled={hasEmptyFields ? true : false} type="submit">Submit</Button>
                 </div>
              </form>

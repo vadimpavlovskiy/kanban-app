@@ -10,6 +10,8 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function column() : BelongsTo {
         return $this->belongsTo(Column::class);
     }

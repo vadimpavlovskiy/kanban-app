@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Column;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,5 +19,32 @@ class ColumnController
                 'columnsData' => $columns,
             ]);
          }
+    }
+    public function update(Request $request, Column $column) {
+        $attributes = $request->validate([
+            'title' => 'required'
+        ]);
+        $column->update($attributes);
+        return to_route('Dashboard');
+    }
+
+    public function destroy(Request $request, Column $column) {
+
+        if(Auth::user()->id !== $column->user_id) {
+            return response()->json(['error'=> 'Unathorized', 403]);
+        }
+       $column->delete();
+       
+       return to_route('Dashboard');
+    }
+    public function store(Request $request) {
+        $user = Auth::user();
+
+        Column::create([
+            'title' => "A New Column",
+            'user_id' => $user->id
+        ]);
+
+        return to_route('Dashboard');
     }
 }

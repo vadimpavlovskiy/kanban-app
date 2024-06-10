@@ -25,9 +25,9 @@ const Login = () => {
                 <h2 className="text-2xl text-center font-bold">Login</h2>
                 <div className="mt-4 flex flex-col gap-y-4">
                   <Label className={"text-xl font-medium"} htmlFor="email">Email</Label>
-                  <Input className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="email" id="email" value={data.email} onChange={e=> setData('email', e.target.value)} />
+                  <Input type="email" id="email" value={data.email} onChange={e=> setData('email', e.target.value)} />
                   <Label className="text-xl font-medium" htmlFor="email">Password:</Label>
-                  <Input required className="rounded-xl text-black bg-blue-100 duration-500 py-3 border-blue-200 focus:bg-blue-500 focus:text-white" type="password" id="password" value={data.password} onChange={e=> setData('password', e.target.value)} />
+                  <Input required type="password" id="password" value={data.password} onChange={e=> setData('password', e.target.value)} />
                   {errors.email && <div className="text-red-400 text-sm font-bold">{errors.email}</div>}
                   <Button disabled={hasEmptyFields ? true : false} type="submit">Submit</Button>
                 </div>
