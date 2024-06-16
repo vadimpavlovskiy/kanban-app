@@ -3,6 +3,7 @@ import { User } from "./UserType";
 
 export type ColumnProps = {
     column: Column;
+    tasks: Task[];
     deleteColumn: (id: string | number) => void;
 };
 

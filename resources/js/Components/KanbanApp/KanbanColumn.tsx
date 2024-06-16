@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import { Column, ColumnProps } from '../Types/ColumnType'
 import { DeleteButton } from '@/Buttons/DeleteButton';
-import { useSortable } from '@dnd-kit/sortable';
+import { SortableContext, useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import { KanbanTask } from './KanbanTask';
 import { Task } from '../Types/TaskType';
@@ -12,7 +12,7 @@ import { CompleteButton } from '@/Buttons/CompleteButton';
 import { PlusButton } from '@/Buttons/PlusButton';
 
 export const KanbanColumn = (props: ColumnProps) => {
-    const {column, deleteColumn} = props;
+    const {column, tasks, deleteColumn} = props;
     const [isEditing, setIsEditing] = useState(false)
 
     // Updating form
@@ -85,11 +85,11 @@ export const KanbanColumn = (props: ColumnProps) => {
                 </div>
             </div>
             <div className='flex flex-col gap-y-2 p-3 overflow-scroll'>
-                {column.tasks.map((task:Task) => {
-                    return (
-                        <KanbanTask task={task} />
-                    )
-                })}
+                <SortableContext items={tasks.map((task: Task) => task.id)}>
+                {tasks.map((task: Task) => (
+                        <KanbanTask key={task.id} task={task} />
+                ))}
+                </SortableContext>
             </div>
         </div>
     )
